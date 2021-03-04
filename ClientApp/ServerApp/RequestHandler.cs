@@ -19,13 +19,15 @@ namespace ServerApp {
             (string command, string body) = parseRequest(req);
 
             if (command == "submit_client_info") {
-                try
-                {
+                try {
                     ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(body);
-                    return System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " logged successfully.");
-                }
-                catch (Exception e)
-                {
+
+                    if(storageManager.save(user)) {
+                        return System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " saved successfully.");
+                    } else {
+                        return System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " saved unsuccessfully");
+                    }
+                } catch (Exception e) {
                     return System.Text.Encoding.Unicode.GetBytes(e.ToString());
                 }
             }
