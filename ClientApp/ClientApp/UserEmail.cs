@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClientApp {
     class UserEmail : IUserData {
-        public bool validate(string data) {
+        public string data { get; set; }
+        public bool validate() {
             return true;
         }
     }

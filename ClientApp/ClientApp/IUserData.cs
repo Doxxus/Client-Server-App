@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClientApp {
     interface IUserData {
-        bool validate(string data);
+        string data { get; set; }
+
+        bool validate();
     }
 }
