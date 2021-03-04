@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Net.Mail;
+using Newtonsoft.Json;
 
 namespace ServerApp {
     class Program {
         static void Main(string[] args) {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Loopback, 1234);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Loopback, 3000);
             TcpListener listener = new TcpListener(ep);
             listener.Start();
 
@@ -34,9 +35,9 @@ namespace ServerApp {
                 message = cleanMessage(buffer);
 
                 // Save the data sent by the client;  
-                 person = JsonConvert.DeserializeObject<Person>(message); // Deserialize  
+                ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(message); // Deserialize  
 
-                byte[] bytes = System.Text.Encoding.Unicode.GetBytes("Thank you for your message, " + person.Name);
+                byte[] bytes = System.Text.Encoding.Unicode.GetBytes("Thank you for your message, " + user.fname + " " + user.lname);
                 sender.GetStream().Write(bytes, 0, bytes.Length); // Send the response  
             }
         }
