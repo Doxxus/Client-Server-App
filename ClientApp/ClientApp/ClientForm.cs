@@ -13,7 +13,8 @@ namespace ClientApp {
         private UserName name;
         private UserDOB dateOfBirth;
         private UserEmail email;
-        private UserPhone phone; 
+        private UserPhone phone;
+        private User tempUser;
 
         public ClientForm() {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace ClientApp {
             dateOfBirth = new UserDOB();
             email = new UserEmail();
             phone = new UserPhone();
+            tempUser = new User();
         }
 
         private void dobCalendar_DateSelected(object sender, DateRangeEventArgs e) {
