@@ -24,6 +24,7 @@ namespace ServerApp {
 
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
+            handler = new RequestHandler();
 
             request = new byte[bytesize];
 

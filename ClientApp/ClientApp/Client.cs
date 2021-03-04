@@ -6,35 +6,38 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Net.Mail;
+using Newtonsoft.Json;
 
 namespace ClientApp {
     class Client {
-        public byte[] sendMessage(byte[] messageBytes) {
-            const int bytesize = 1024 * 1024;
-            
+        const int bytesize = 1024 * 1024;
+        byte[] req;
+        byte[] res;
+
+        public byte[] sendClientInfo(User user) {
+            res = new byte[bytesize];
             try {
-                System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000); // Create a new connection  
+                System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000); 
                 NetworkStream stream = client.GetStream();
 
-                stream.Write(messageBytes, 0, messageBytes.Length); // Write the bytes  
-                Console.WriteLine("Connected to the server");
-                Console.WriteLine("Waiting for response...");
 
-                messageBytes = new byte[bytesize]; // Clear the message   
+                req = System.Text.Encoding.Unicode.GetBytes("submit_client_info" + JsonConvert.SerializeObject(user));
 
-                // Receive the stream of bytes  
-                stream.Read(messageBytes, 0, messageBytes.Length);
+                stream.Write(req, 0, req.Length);
+                System.Diagnostics.Debug.WriteLine("Connected to the server");
+                System.Diagnostics.Debug.WriteLine("Waiting for response...");
 
-                // Clean up  
+                stream.Read(res, 0, res.Length);
+
                 stream.Dispose();
                 client.Close();
             }
 
             catch (Exception e) {
-                Console.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
-            return messageBytes; // Return response  
+            return res;
         }
     }
 }

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace ClientApp {
     public partial class ClientForm : Form {
@@ -120,9 +119,9 @@ namespace ClientApp {
             tempUser.email = email.data;
             tempUser.phone = phone.data;
 
-            byte[] bytes = client.sendMessage(System.Text.Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(tempUser)));
+            byte[] response = client.sendClientInfo(tempUser);
 
-            feedbackTextBox.Text = System.Text.Encoding.Unicode.GetString(bytes);
+            feedbackTextBox.Text = System.Text.Encoding.Unicode.GetString(response);
         }
     }
 }
