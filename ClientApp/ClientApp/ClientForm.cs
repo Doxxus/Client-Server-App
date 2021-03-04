@@ -22,15 +22,20 @@ namespace ClientApp {
             System.Diagnostics.Debug.WriteLine(dobCalendar.SelectionRange.Start.ToString("dd MMM yyyy"));
         }
 
-        private void clear_button_Click(object sender, EventArgs e) {
-            nameTextbox.Clear();
+        private void clearButton_Click(object sender, EventArgs e) {
+            clearInfo();
+        }
+
+        private void submitButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void clearInfo() {
+            fNameTextbox.Clear();
+            lNameTextBox.Clear();
             dobCalendar.SelectionStart = dobCalendar.TodayDate;
             emailTextbox.Clear();
             phoneTextbox.Clear();
-        }
-
-        private void submit_button_Click(object sender, EventArgs e) {
-
         }
     }
 }
