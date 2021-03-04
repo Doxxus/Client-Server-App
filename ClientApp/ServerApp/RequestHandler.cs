@@ -12,15 +12,19 @@ namespace ServerApp {
 
             (string command, string body) = parseRequest(req);
 
-            Console.WriteLine(command);
-            Console.WriteLine(body);
-
-            try {
-                ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(body);
-                return System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " logged successfully.");
-            } catch (Exception e) {
-                return System.Text.Encoding.Unicode.GetBytes(e.ToString());
+            if (command == "submit_client_info") {
+                try
+                {
+                    ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(body);
+                    return System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " logged successfully.");
+                }
+                catch (Exception e)
+                {
+                    return System.Text.Encoding.Unicode.GetBytes(e.ToString());
+                }
             }
+
+            return System.Text.Encoding.Unicode.GetBytes("Invalid command.");
         }
 
         private Tuple<string, string> parseRequest(string req) {
