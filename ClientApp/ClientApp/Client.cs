@@ -17,9 +17,7 @@ namespace ClientApp {
                 NetworkStream stream = client.GetStream();
 
                 stream.Write(messageBytes, 0, messageBytes.Length); // Write the bytes  
-                Console.WriteLine("================================");
-                Console.WriteLine("=   Connected to the server    =");
-                Console.WriteLine("================================");
+                Console.WriteLine("Connected to the server");
                 Console.WriteLine("Waiting for response...");
 
                 messageBytes = new byte[bytesize]; // Clear the message   

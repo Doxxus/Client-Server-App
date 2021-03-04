@@ -15,10 +15,7 @@ namespace ServerApp {
             TcpListener listener = new TcpListener(ep);
             listener.Start();
 
-            Console.WriteLine(@"  
-            ===================================================  
-                   Started listening requests at: {0}:{1}  
-            ===================================================",
+            Console.WriteLine(@"Started listening for requests at: {0}:{1}",
             ep.Address, ep.Port);
 
             // Run the loop continuously; this is the server.  
