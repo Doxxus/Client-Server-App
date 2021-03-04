@@ -14,11 +14,13 @@ namespace ServerApp {
         TcpListener listener;
 
         public void init() {
+            Console.WriteLine("Starting Server...");
+
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
             listener.Start();
 
-            Console.WriteLine(@"Started listening for requests at: {0}:{1}",
+            Console.WriteLine(@"Listening for requests at: {0}:{1}",
             ep.Address, ep.Port);
         }
 
