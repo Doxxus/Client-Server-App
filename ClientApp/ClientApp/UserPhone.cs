@@ -8,7 +8,19 @@ namespace ClientApp {
     class UserPhone : IUserData {
         public string data { get; set; }
         public bool validate() {
-            return true;
+
+            if (string.IsNullOrWhiteSpace(data)) { return false; }
+
+            data = data.Replace(" ", "");
+            data = data.Replace("-", "");
+            data = data.Replace("(", "");
+            data = data.Replace(")", "");
+
+            try { double.Parse(data); }
+            catch { return false; }
+
+            if (data.Length == 10) { return true; }
+            else { return false; }
         }
     }
 }

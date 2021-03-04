@@ -8,7 +8,9 @@ namespace ClientApp {
     class UserDOB : IUserData {
         public string data { get; set; }
         public bool validate() {
-            return true;
+            if(DateTime.Parse(data) < DateTime.Today) { return true; }
+            return false;
         }
+            
     }
 }
