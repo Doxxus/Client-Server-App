@@ -25,9 +25,11 @@ namespace ClientApp {
             email = new UserEmail();
             phone = new UserPhone();
             tempUser = new User();
-            client = new Client();
+            client = new Client(this);
             InitializeComponent();
         }
+
+        //Event Handlers
 
         private void ClientForm_Load(object sender, EventArgs e) {
             
@@ -52,7 +54,11 @@ namespace ClientApp {
                 submitData();
             }
         }
+    }
 
+    public partial class ClientForm : Form {
+
+        //Client form helper methods
         private void clearInfo() {
             fNameTextbox.Clear();
             lNameTextBox.Clear();
@@ -81,7 +87,7 @@ namespace ClientApp {
         private bool validateData() {
             bool flag = true;
 
-            if(!fname.validate() || !lname.validate()) {
+            if (!fname.validate() || !lname.validate()) {
                 feedbackTextBox.Text += "Invalid name. ";
                 fNameLabel.ForeColor = System.Drawing.Color.Red;
                 lNameLabel.ForeColor = System.Drawing.Color.Red;
@@ -119,9 +125,9 @@ namespace ClientApp {
             tempUser.email = email.data;
             tempUser.phone = phone.data;
 
-            byte[] response = client.sendClientInfo(tempUser);
-
-            feedbackTextBox.Text = System.Text.Encoding.Unicode.GetString(response);
+            client.sendClientInfo(tempUser);
         }
+
+        public void setFeedback(string fb) { feedbackTextBox.Text = fb; }
     }
 }

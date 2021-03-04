@@ -7,6 +7,12 @@ using Newtonsoft.Json;
 
 namespace ServerApp {
     class RequestHandler {
+        StorageManager storageManager;
+
+        public RequestHandler(StorageManager sm) {
+            storageManager = sm;
+        }
+
         public byte[] handleIncomingRequest(string req) {
             Console.WriteLine("Recieved Request: " + req);
 

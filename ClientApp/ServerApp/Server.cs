@@ -7,11 +7,13 @@ using System.Net.Sockets;
 using System.Net;
 using System.Net.Mail;
 
+
 namespace ServerApp {
     class Server {
         IPEndPoint ep;
         TcpListener listener;
         RequestHandler handler;
+        StorageManager storageManager;
 
         byte[] request;
         byte[] response;
@@ -22,11 +24,15 @@ namespace ServerApp {
         public void init() {
             Console.WriteLine("Starting Server...");
 
+
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
-            handler = new RequestHandler();
+            storageManager = new StorageManager();
+            handler = new RequestHandler(storageManager);
 
             request = new byte[bytesize];
+
+            storageManager.init();
 
             listener.Start();
 

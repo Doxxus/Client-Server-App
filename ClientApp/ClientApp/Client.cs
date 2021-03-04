@@ -10,11 +10,17 @@ using Newtonsoft.Json;
 
 namespace ClientApp {
     class Client {
+        ClientForm ui;
+
         const int bytesize = 1024 * 1024;
         byte[] req;
         byte[] res;
 
-        public byte[] sendClientInfo(User user) {
+        public Client(ClientForm f) {
+            ui = f;
+        }
+
+        public void sendClientInfo(User user) {
             res = new byte[bytesize];
             try {
                 System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000); 
@@ -37,7 +43,7 @@ namespace ClientApp {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
-            return res;
+            ui.setFeedback(System.Text.Encoding.Unicode.GetString(res));
         }
     }
 }
