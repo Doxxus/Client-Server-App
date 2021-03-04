@@ -17,5 +17,14 @@ namespace ClientApp
             InitializeComponent();
         }
 
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dob_calendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(dob_calendar.SelectionRange.Start.ToString("dd MMM yyyy"));
+        }
     }
 }
