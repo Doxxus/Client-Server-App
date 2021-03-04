@@ -16,3 +16,5 @@ F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\obj\Debug\net5.0-windo
 F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\obj\Debug\net5.0-windows\ClientApp.pdb
 F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\obj\Debug\net5.0-windows\ClientApp.genruntimeconfig.cache
 F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\obj\Debug\net5.0-windows\ClientApp.csprojAssemblyReference.cache
+F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+F:\Documents\GitHub\Client-Server-App\ClientApp\ClientApp\obj\Debug\net5.0-windows\ClientApp.csproj.CopyComplete

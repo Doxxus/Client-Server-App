@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "x9aFLTkcbN/Wm9VoKOgCmaMGBUxtUG75vcgeTnESbyFUudd4uaJ0DrvX9KECFcspV79GMKLCi06wFCdbbL4UbA==",
+  "dgSpecHash": "5xaxTHMbq7CrOIjXD94/vD0pKLGsZkgC4wkx9K6JaeRyLdP7/8NC99LT6BPHtBdgalFUpkpqVH7ixSk7QklFkw==",
   "success": true,
   "projectFilePath": "F:\\Documents\\GitHub\\Client-Server-App\\ClientApp\\ClientApp\\ClientApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Celeph\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

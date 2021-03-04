@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace ClientApp {
     public partial class ClientForm : Form {
@@ -16,18 +17,21 @@ namespace ClientApp {
         private UserEmail email;
         private UserPhone phone;
         private User tempUser;
+        private Client client;
 
         public ClientForm() {
-            InitializeComponent();
-        }
-
-        private void ClientForm_Load(object sender, EventArgs e) {
             fname = new UserName();
             lname = new UserName();
             dateOfBirth = new UserDOB();
             email = new UserEmail();
             phone = new UserPhone();
             tempUser = new User();
+            client = new Client();
+            InitializeComponent();
+        }
+
+        private void ClientForm_Load(object sender, EventArgs e) {
+            
         }
 
         private void dobCalendar_DateSelected(object sender, DateRangeEventArgs e) {
@@ -113,6 +117,10 @@ namespace ClientApp {
             tempUser.dateOfBirth = dateOfBirth.data;
             tempUser.email = email.data;
             tempUser.phone = phone.data;
+
+            byte[] bytes = client.sendMessage(System.Text.Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(tempUser)));
+
+            feedbackTextBox.Text = System.Text.Encoding.Unicode.GetString(bytes);
         }
     }
 }
