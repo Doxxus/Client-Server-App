@@ -112,6 +112,8 @@ namespace ClientApp {
         }
 
         private void submitData() {
+            clearInfo();
+
             tempUser.fname = fname.data;
             tempUser.lname = lname.data;
             tempUser.dateOfBirth = dateOfBirth.data;
