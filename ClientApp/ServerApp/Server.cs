@@ -12,6 +12,7 @@ namespace ServerApp {
     class Server {
         IPEndPoint ep;
         TcpListener listener;
+
         public void init() {
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
@@ -22,7 +23,6 @@ namespace ServerApp {
         }
 
         public void run() {
-            // Run the loop continuously; this is the server.  
             while (true) {
                 const int bytesize = 1024 * 1024;
 
@@ -32,16 +32,14 @@ namespace ServerApp {
                 var sender = listener.AcceptTcpClient();
                 sender.GetStream().Read(buffer, 0, bytesize);
 
-                // Read the message and perform different actions  
                 message = cleanMessage(buffer);
 
                 Console.WriteLine("Recieved Message: " + message);
 
-                // Save the data sent by the client;  
-                ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(message); // Deserialize  
+                ClientInfo user = JsonConvert.DeserializeObject<ClientInfo>(message);
 
-                byte[] bytes = System.Text.Encoding.Unicode.GetBytes("Thank you for your message, " + user.fname + " " + user.lname);
-                sender.GetStream().Write(bytes, 0, bytes.Length); // Send the response  
+                byte[] bytes = System.Text.Encoding.Unicode.GetBytes(user.fname + " " + user.lname + " logged successfully.");
+                sender.GetStream().Write(bytes, 0, bytes.Length); 
             }
         }
 
