@@ -17,12 +17,8 @@ namespace ServerApp
         string filePath { get; set; }
         string connectionString { get; set; }
 
-        SqlHandler sql;
-
-
         public void init() {
             storageType = ConfigurationManager.AppSettings.Get("storage_type");
-            sql = new SqlHandler();
 
             if (storageType == "database") {
                 connectionString = "Server=localhost;Database=master;Trusted_Connection=true";
