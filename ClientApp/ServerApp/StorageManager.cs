@@ -8,18 +8,24 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.IO;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 namespace ServerApp
 {
     class StorageManager {
         string storageType;
-        public string filePath { get; set; }
+        string filePath { get; set; }
+        string connectionString { get; set; }
+
 
         public void init() {
             storageType = ConfigurationManager.AppSettings.Get("storage_type");
 
             if (storageType == "database") {
+                connectionString = "Server=localhost;Database=master;Trusted_Connection=true";
                 Console.WriteLine("SQL database storage type selected.");
+
+                intitializeDatabase();
             } else if (storageType == "file") {
                 filePath = ".\\data\\clients.txt";
                 Console.WriteLine("Flat file storage type selected.");
@@ -51,7 +57,10 @@ namespace ServerApp
         }
 
         private void saveToDatabase(ClientInfo client) {
-
+            using (SqlConnection conn = new SqlConnection()) {
+                conn.ConnectionString = connectionString;
+                
+            }
         }
 
         public List<ClientInfo> collectClients() {
@@ -79,6 +88,25 @@ namespace ServerApp
             }
 
             return ret;
+        }
+
+        private void intitializeDatabase() {
+            using (SqlConnection conn = new SqlConnection()) {
+                conn.ConnectionString = connectionString;
+                conn.Open();
+
+                try {
+                    SqlCommand command = new SqlCommand("SELECT * FROM clients", conn);
+                } catch (SqlException e) {
+                    Console.WriteLine(e);
+                    SqlCommand command = new SqlCommand("CREATE TABLE clients (" +
+                        "FirstName varchar(255)," +
+                        "LastName varchar(255)," +
+                        "DateofBirth varchar(255)," +
+                        "EmailAddress varchar(255)," +
+                        "PhoneNumber varchar(255));");
+                }
+            }
         }
     }
 }
