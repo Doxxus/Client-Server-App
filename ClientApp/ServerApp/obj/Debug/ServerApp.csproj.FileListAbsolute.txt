@@ -7,3 +7,4 @@ F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.cs
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.exe
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.pdb
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\bin\Debug\ServerApp.exe.config
+F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.csprojAssemblyReference.cache

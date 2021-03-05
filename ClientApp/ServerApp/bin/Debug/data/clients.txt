@@ -1,3 +1,5 @@
 {"fname":"Lachlan","lname":"Campbell","dateOfBirth":"20 Jul. 1997","email":"Lockminster@gmail.com","phone":"6138071450"}
 {"fname":"Celeph","lname":"Amakiir","dateOfBirth":"24 Oct. 1956","email":"camakiir@hotmail.com","phone":"6134050505"}
 {"fname":"Kairo","lname":"Aurelion","dateOfBirth":"02 May 1989","email":"kaurelion76@msn.com","phone":"5246261234"}
+{"fname":"Cal","lname":"Orelio","dateOfBirth":"11 Feb. 1991","email":"cal.Orelio@gmail.com","phone":"6134789999"}
+{"fname":"Michael","lname":"Alarcon","dateOfBirth":"15 Feb. 1997","email":"araakun@gmail.com","phone":"6138954584"}
