@@ -71,7 +71,8 @@ namespace ClientApp {
                     stream.Read(res, 0, res.Length);
                 }
             } catch (Exception e) {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                ui.setFeedback(e.Message);
+                return;
             }
 
             //Deserializing response

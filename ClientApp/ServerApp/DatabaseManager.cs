@@ -31,6 +31,8 @@ namespace ServerApp {
                             }
                         }
                     } catch (Exception e) {
+                        Console.WriteLine(e.Message);
+
                         //If it hasn't (ie. the sql command threw an exeption) then create it here
                         SqlCommand command = new SqlCommand("CREATE TABLE dbo.Clients(" +
                             "FirstName varchar(255)," +
