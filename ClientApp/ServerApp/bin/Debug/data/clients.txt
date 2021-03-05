@@ -1,1 +1,3 @@
 {"fname":"Lachlan","lname":"Campbell","dateOfBirth":"20 Jul. 1997","email":"Lockminster@gmail.com","phone":"6138071450"}
+{"fname":"Celeph","lname":"Amakiir","dateOfBirth":"24 Oct. 1956","email":"camakiir@hotmail.com","phone":"6134050505"}
+{"fname":"Kairo","lname":"Aurelion","dateOfBirth":"02 May 1989","email":"kaurelion76@msn.com","phone":"5246261234"}

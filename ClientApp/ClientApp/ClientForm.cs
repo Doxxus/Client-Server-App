@@ -67,6 +67,7 @@ namespace ClientApp {
             emailTextbox.Clear();
             phoneTextbox.Clear();
             feedbackTextBox.Clear();
+            dataList.Items.Clear();
         }
 
         private void resetColors() {
@@ -117,8 +118,7 @@ namespace ClientApp {
             return false;
         }
 
-        private void submitData()
-        {
+        private void submitData() {
             clearInfo();
 
             tempUser.fname = fname.data;
@@ -140,6 +140,10 @@ namespace ClientApp {
             temp.SubItems.Add(user.phone);
 
             dataList.Items.Add(temp);
+        }
+
+        public void clearList() {
+            dataList.Items.Clear();
         }
     }
 }

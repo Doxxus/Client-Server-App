@@ -30,8 +30,6 @@ namespace ServerApp {
             storageManager = new StorageManager();
             handler = new RequestHandler(storageManager);
 
-            request = new byte[bytesize];
-
             storageManager.init();
 
             listener.Start();
@@ -42,6 +40,8 @@ namespace ServerApp {
 
         public void run() {
             while (true) {
+                request = new byte[bytesize];
+
                 var sender = listener.AcceptTcpClient();
                 sender.GetStream().Read(request, 0, bytesize);
 

@@ -22,6 +22,7 @@ namespace ClientApp {
 
         public void sendClientInfo(User user) {
             res = new byte[bytesize];
+
             try {
                 System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000); 
                 NetworkStream stream = client.GetStream();
@@ -72,6 +73,8 @@ namespace ClientApp {
             }
 
             List<User> users = JsonConvert.DeserializeObject<List<User>>(cleanMessage(res));
+
+            ui.clearList();
 
             foreach (User u in users) {
                 ui.addToList(u);

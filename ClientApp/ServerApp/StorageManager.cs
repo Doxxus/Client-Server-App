@@ -37,7 +37,11 @@ namespace ServerApp
 
         private bool saveToFile(ClientInfo client) {
             try {
-                File.AppendAllText(filePath, JsonConvert.SerializeObject(client));
+
+                using (StreamWriter sw = File.AppendText(filePath)) {
+                    sw.WriteLine(JsonConvert.SerializeObject(client));
+                }
+                    
                 Console.WriteLine("Entry Saved Successfully.");
                 return true;
             } catch (Exception e) {
@@ -51,8 +55,16 @@ namespace ServerApp
         }
 
         public List<ClientInfo> collectClients() {
-            List<ClientInfo> ret = new List<ClientInfo>();
+            if (storageType == "file") { return collectClientsFromFile();  }
 
+            
+
+            return new List<ClientInfo>();
+        }
+
+        private List<ClientInfo> collectClientsFromFile() {
+            List<ClientInfo> ret = new List<ClientInfo>();
+            
             try {
                 using (StreamReader sr = File.OpenText(filePath)) {
                     string line;
@@ -61,7 +73,8 @@ namespace ServerApp
                         ret.Add(JsonConvert.DeserializeObject<ClientInfo>(line));
                     }
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine(e);
             }
 
