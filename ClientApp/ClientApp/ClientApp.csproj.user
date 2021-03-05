@@ -4,5 +4,17 @@
     <Compile Update="ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ClientForm.DataHandlers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ClientForm.EvenHandlers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ClientForm.Helpers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ClientForm.Validator.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
