@@ -23,57 +23,61 @@ namespace ClientApp {
         public void sendClientInfo(User user) {
             res = new byte[bytesize];
 
+            //Sending client informatin to server
             try {
-                System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000); 
-                NetworkStream stream = client.GetStream();
+                System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000);
+                
+                //Opening connection to server
+                using (NetworkStream stream = client.GetStream()) {
 
+                    //Serializing object into a JSON string and then into a byte array
+                    req = System.Text.Encoding.Unicode.GetBytes("submit_client_info" + JsonConvert.SerializeObject(user));
 
-                req = System.Text.Encoding.Unicode.GetBytes("submit_client_info" + JsonConvert.SerializeObject(user));
+                    //Sending request
+                    stream.Write(req, 0, req.Length);
+                    System.Diagnostics.Debug.WriteLine("Connected to the server");
+                    System.Diagnostics.Debug.WriteLine("Waiting for response...");
 
-                stream.Write(req, 0, req.Length);
-                System.Diagnostics.Debug.WriteLine("Connected to the server");
-                System.Diagnostics.Debug.WriteLine("Waiting for response...");
-
-                stream.Read(res, 0, res.Length);
-
-                stream.Dispose();
-                client.Close();
+                    //reading response
+                    stream.Read(res, 0, res.Length);
+                }
             }
 
             catch (Exception e) {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
+            //Displaying the response to the client
             ui.setFeedback(System.Text.Encoding.Unicode.GetString(res));
         }
 
         public void requestClients() {
             res = new byte[bytesize];
-            try
-            {
+            try {
                 System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000);
-                NetworkStream stream = client.GetStream();
 
+                //Opening connection to server
+                using (NetworkStream stream = client.GetStream()) {
 
-                req = System.Text.Encoding.Unicode.GetBytes("send_client_info");
+                    //Serializing request
+                    req = System.Text.Encoding.Unicode.GetBytes("send_client_info");
 
-                stream.Write(req, 0, req.Length);
-                System.Diagnostics.Debug.WriteLine("Connected to the server");
-                System.Diagnostics.Debug.WriteLine("Waiting for response...");
+                    //Sending request
+                    stream.Write(req, 0, req.Length);
+                    System.Diagnostics.Debug.WriteLine("Connected to the server");
+                    System.Diagnostics.Debug.WriteLine("Waiting for response...");
 
-                stream.Read(res, 0, res.Length);
-
-                stream.Dispose();
-                client.Close();
-            }
-
-            catch (Exception e)
-            {
+                    //Reading response
+                    stream.Read(res, 0, res.Length);
+                }
+            } catch (Exception e) {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
+            //Deserializing response
             List<User> users = JsonConvert.DeserializeObject<List<User>>(cleanMessage(res));
 
+            //Populating UI with clients info recieved from server.
             ui.clearList();
 
             foreach (User u in users) {
@@ -81,6 +85,7 @@ namespace ClientApp {
             }
         }
 
+        //Turns a byte array into a string representation and removes any null terminator characters
         private static string cleanMessage(byte[] bytes) {
             string message = System.Text.Encoding.Unicode.GetString(bytes);
 

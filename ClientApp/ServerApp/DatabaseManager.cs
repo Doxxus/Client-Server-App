@@ -11,6 +11,7 @@ namespace ServerApp {
         public override void init(string arg) {
             connector = arg;
 
+            //Connecting to the database
             try {
                 using (SqlConnection conn = new SqlConnection()) {
                     conn.ConnectionString = connector;
@@ -19,6 +20,7 @@ namespace ServerApp {
                     Console.WriteLine("Initializing Database.");
 
                     try {
+                        //Testing to see if the dbo.Clients table has already been created
                         SqlCommand command = new SqlCommand("SELECT * FROM dbo.Clients", conn);
 
                         using (SqlDataReader reader = command.ExecuteReader()) {
@@ -29,6 +31,7 @@ namespace ServerApp {
                             }
                         }
                     } catch (Exception e) {
+                        //If it hasn't (ie. the sql command threw an exeption) then create it here
                         SqlCommand command = new SqlCommand("CREATE TABLE dbo.Clients(" +
                             "FirstName varchar(255)," +
                             "LastName varchar(255)," +
@@ -51,9 +54,11 @@ namespace ServerApp {
 
         public override bool save(ClientInfo client) {
             using (SqlConnection conn = new SqlConnection()) {
+                //Opening db connection
                 conn.ConnectionString = connector;
                 conn.Open();
 
+                //Generating insert command / command params
                 SqlCommand insertCommand = new SqlCommand("INSERT INTO dbo.Clients (FirstName, LastName, DateofBirth, EmailAddress, PhoneNumber) VALUES (@fn, @ln, @dob, @em, @ph)", conn);
                 insertCommand.Parameters.Add("@fn", System.Data.SqlDbType.VarChar);
                 insertCommand.Parameters["@fn"].Value = client.fname;
@@ -66,6 +71,7 @@ namespace ServerApp {
                 insertCommand.Parameters.Add("@ph", System.Data.SqlDbType.VarChar);
                 insertCommand.Parameters["@ph"].Value = client.phone;
 
+                //Executing insert command
                 try {
                     Int32 rowsAffected = insertCommand.ExecuteNonQuery();
                     Console.WriteLine("RowsAffected: {0}", rowsAffected);
@@ -80,18 +86,22 @@ namespace ServerApp {
         public override List<ClientInfo> collectClients() {
             List<ClientInfo> ret = new List<ClientInfo>();
             
+            //Connecting to db
             using (SqlConnection conn = new SqlConnection()) {
                 conn.ConnectionString = connector;
                 conn.Open();
 
+                //Generating command
                 SqlCommand command = new SqlCommand("SELECT * FROM dbo.Clients", conn);
                 using (SqlDataReader reader = command.ExecuteReader()) {
+                    //reading Query output
                     while (reader.Read()) {
                         ClientInfo temp = new ClientInfo();
                         
                         Console.WriteLine(String.Format("{0}, {1}, {2}, {3}, {4}",
                             reader[0], reader[1], reader[2], reader[3], reader[4]));
 
+                        //Saving output to a temp user
                         temp.fname = reader[0].ToString();
                         temp.lname = reader[1].ToString();
                         temp.dateOfBirth = reader[2].ToString();

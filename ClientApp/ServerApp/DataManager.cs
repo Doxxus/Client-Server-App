@@ -20,6 +20,7 @@ namespace ServerApp {
         public void init() {
             storageType = ConfigurationManager.AppSettings.Get("storage_type");
 
+            //Selecting the storage type
             if (storageType == "database") {
                 storageManager = new DatabaseManager();
                 storageManager.init("Server=localhost;Database=master;Trusted_Connection=true");
@@ -29,6 +30,7 @@ namespace ServerApp {
                 storageManager.init(".\\data\\clients.txt");
                 Console.WriteLine("Flat file storage type selected.");
             } else  {
+                //Defaults to file storage
                 storageType = "file";
                 storageManager = new FileManager();
                 storageManager.init(".\\data\\clients.txt");

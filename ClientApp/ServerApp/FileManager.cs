@@ -11,8 +11,10 @@ namespace ServerApp {
         public override void init(string arg) { connector = arg; }
 
         public override bool save(ClientInfo client) {
+            //Opening file
             try {
                 using (StreamWriter sw = File.AppendText(connector)) {
+                    //Writing to file
                     sw.WriteLine(JsonConvert.SerializeObject(client));
                 }
 
@@ -28,13 +30,13 @@ namespace ServerApp {
         public override List<ClientInfo> collectClients() {
             List<ClientInfo> ret = new List<ClientInfo>();
 
+            //Opening file
             try {
-                using (StreamReader sr = File.OpenText(connector))
-                {
+                using (StreamReader sr = File.OpenText(connector)) {
                     string line;
 
-                    while ((line = sr.ReadLine()) != null)
-                    {
+                    while ((line = sr.ReadLine()) != null) {
+                        //Reading line from file, deserializing the JSON and then adding the resulting object to the return object.
                         ret.Add(JsonConvert.DeserializeObject<ClientInfo>(line));
                     }
                 }

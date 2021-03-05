@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ServerApp {
-    abstract class StorageManager {
+    abstract class StorageManager {  //Abstrac storageManager class, can add more handlers if you want to expand storage options (ie mongoDB, etc.)
+        
         protected string connector;
         public abstract void init(string arg);
 

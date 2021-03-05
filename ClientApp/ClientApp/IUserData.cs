@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientApp {
-    interface IUserData {
+    interface IUserData { //User data interface, enforced a validate method.
         string data { get; set; }
 
         bool validate();

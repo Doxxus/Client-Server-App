@@ -10,6 +10,8 @@ namespace ClientApp {
     class UserEmail : IUserData {
         public string data { get; set; }
         public bool validate() {
+            //Using regular expressions to validate email address
+            
             if (string.IsNullOrWhiteSpace(data)) { return false; }
 
             try {
@@ -28,8 +30,7 @@ namespace ClientApp {
                 return Regex.IsMatch(data,
                     @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
                     RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException) { return false; }
+            } catch (RegexMatchTimeoutException) { return false; }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ServerApp {
         IPEndPoint ep;
         TcpListener listener;
         RequestHandler handler;
-        DataManager storageManager;
+        DataManager dataManager;
 
         byte[] request;
         byte[] response;
@@ -24,13 +24,13 @@ namespace ServerApp {
         public void init() {
             Console.WriteLine("Starting Server...");
 
-
+            //Setting up server request listener
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
-            storageManager = new DataManager();
-            handler = new RequestHandler(storageManager);
+            dataManager = new DataManager();
+            handler = new RequestHandler(dataManager);
 
-            storageManager.init();
+            dataManager.init();
 
             listener.Start();
 
@@ -42,15 +42,19 @@ namespace ServerApp {
             while (true) {
                 request = new byte[bytesize];
 
+                //Listening for incoming requests
                 var sender = listener.AcceptTcpClient();
                 sender.GetStream().Read(request, 0, bytesize);
 
+                //Handling reuqest
                 response = handler.handleIncomingRequest(cleanMessage(request));
 
+                //Sending response
                 sender.GetStream().Write(response, 0, response.Length); 
             }
         }
 
+        //Turns byte array into a string and removes null terminator characters
         private static string cleanMessage(byte[] bytes) {
             string message = System.Text.Encoding.Unicode.GetString(bytes);
 
