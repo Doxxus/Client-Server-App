@@ -45,5 +45,48 @@ namespace ClientApp {
 
             ui.setFeedback(System.Text.Encoding.Unicode.GetString(res));
         }
+
+        public void requestClients() {
+            res = new byte[bytesize];
+            try
+            {
+                System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("127.0.0.1", 3000);
+                NetworkStream stream = client.GetStream();
+
+
+                req = System.Text.Encoding.Unicode.GetBytes("send_client_info");
+
+                stream.Write(req, 0, req.Length);
+                System.Diagnostics.Debug.WriteLine("Connected to the server");
+                System.Diagnostics.Debug.WriteLine("Waiting for response...");
+
+                stream.Read(res, 0, res.Length);
+
+                stream.Dispose();
+                client.Close();
+            }
+
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(cleanMessage(res));
+
+            foreach (User u in users) {
+                ui.addToList(u);
+            }
+        }
+
+        private static string cleanMessage(byte[] bytes) {
+            string message = System.Text.Encoding.Unicode.GetString(bytes);
+
+            string result = null;
+            foreach (var nullChar in message) {
+                if (nullChar != '\0') { result += nullChar; }
+            }
+
+            return result;
+        }
     }
 }

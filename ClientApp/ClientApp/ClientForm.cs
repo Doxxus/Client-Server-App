@@ -11,10 +11,10 @@ using System.Windows.Forms;
 namespace ClientApp {
     public partial class ClientForm : Form {
         private UserName fname;
-        private UserName lname; 
-        private UserDOB dateOfBirth;
+        private UserName lname;
         private UserEmail email;
         private UserPhone phone;
+        private UserDOB dateOfBirth;
         private User tempUser;
         private Client client;
 
@@ -54,9 +54,10 @@ namespace ClientApp {
                 submitData();
             }
         }
-    }
 
-    public partial class ClientForm : Form {
+        private void getData_Click(object sender, EventArgs e) {
+            client.requestClients();
+        }
 
         //Client form helper methods
         private void clearInfo() {
@@ -116,7 +117,8 @@ namespace ClientApp {
             return false;
         }
 
-        private void submitData() {
+        private void submitData()
+        {
             clearInfo();
 
             tempUser.fname = fname.data;
@@ -129,5 +131,15 @@ namespace ClientApp {
         }
 
         public void setFeedback(string fb) { feedbackTextBox.Text = fb; }
+        public void addToList(User user) {
+            ListViewItem temp = new ListViewItem(user.fname);
+
+            temp.SubItems.Add(user.lname);
+            temp.SubItems.Add(user.dateOfBirth);
+            temp.SubItems.Add(user.email);
+            temp.SubItems.Add(user.phone);
+
+            dataList.Items.Add(temp);
+        }
     }
 }

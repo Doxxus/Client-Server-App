@@ -30,6 +30,8 @@ namespace ServerApp {
                 } catch (Exception e) {
                     return System.Text.Encoding.Unicode.GetBytes(e.ToString());
                 }
+            } else if (command == "send_client_info") {
+                return System.Text.Encoding.Unicode.GetBytes(JsonConvert.SerializeObject(storageManager.collectClients()));
             }
 
             return System.Text.Encoding.Unicode.GetBytes("Invalid command.");
@@ -38,6 +40,10 @@ namespace ServerApp {
         private Tuple<string, string> parseRequest(string req) {
             Console.WriteLine("Parsing Request.");
             int index = req.IndexOf("{");
+
+            if (index == -1) {
+                return Tuple.Create(req, "");
+            }
 
             string command = req.Substring(0, index).Trim();
             string body = req.Substring(index, req.Length-index).Trim();

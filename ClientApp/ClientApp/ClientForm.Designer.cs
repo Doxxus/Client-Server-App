@@ -35,6 +35,11 @@ namespace ClientApp {
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.phoneTextbox = new System.Windows.Forms.TextBox();
             this.dataList = new System.Windows.Forms.ListView();
+            this.firstname = new System.Windows.Forms.ColumnHeader();
+            this.lastname = new System.Windows.Forms.ColumnHeader();
+            this.dob = new System.Windows.Forms.ColumnHeader();
+            this.emailaddr = new System.Windows.Forms.ColumnHeader();
+            this.phonenum = new System.Windows.Forms.ColumnHeader();
             this.submitButton = new System.Windows.Forms.Button();
             this.getDataButton = new System.Windows.Forms.Button();
             this.lNameLabel = new System.Windows.Forms.Label();
@@ -122,12 +127,44 @@ namespace ClientApp {
             // 
             // dataList
             // 
+            this.dataList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.firstname,
+            this.lastname,
+            this.dob,
+            this.emailaddr,
+            this.phonenum});
             this.dataList.HideSelection = false;
             this.dataList.Location = new System.Drawing.Point(340, 12);
             this.dataList.Name = "dataList";
-            this.dataList.Size = new System.Drawing.Size(432, 277);
+            this.dataList.Size = new System.Drawing.Size(832, 277);
             this.dataList.TabIndex = 8;
             this.dataList.UseCompatibleStateImageBehavior = false;
+            this.dataList.View = System.Windows.Forms.View.Details;
+            // 
+            // firstname
+            // 
+            this.firstname.Text = "First Name";
+            this.firstname.Width = 150;
+            // 
+            // lastname
+            // 
+            this.lastname.Text = "Last Name";
+            this.lastname.Width = 150;
+            // 
+            // dob
+            // 
+            this.dob.Text = "Date of Birth";
+            this.dob.Width = 100;
+            // 
+            // emailaddr
+            // 
+            this.emailaddr.Text = "Email Address";
+            this.emailaddr.Width = 275;
+            // 
+            // phonenum
+            // 
+            this.phonenum.Text = "Phone Number";
+            this.phonenum.Width = 150;
             // 
             // submitButton
             // 
@@ -143,10 +180,11 @@ namespace ClientApp {
             // 
             this.getDataButton.Location = new System.Drawing.Point(340, 295);
             this.getDataButton.Name = "getDataButton";
-            this.getDataButton.Size = new System.Drawing.Size(432, 23);
+            this.getDataButton.Size = new System.Drawing.Size(832, 23);
             this.getDataButton.TabIndex = 11;
             this.getDataButton.Text = "Get Data";
             this.getDataButton.UseVisualStyleBackColor = true;
+            this.getDataButton.Click += new System.EventHandler(this.getData_Click);
             // 
             // lNameLabel
             // 
@@ -169,7 +207,7 @@ namespace ClientApp {
             this.feedbackTextBox.Location = new System.Drawing.Point(107, 326);
             this.feedbackTextBox.Name = "feedbackTextBox";
             this.feedbackTextBox.ReadOnly = true;
-            this.feedbackTextBox.Size = new System.Drawing.Size(665, 23);
+            this.feedbackTextBox.Size = new System.Drawing.Size(1065, 23);
             this.feedbackTextBox.TabIndex = 14;
             // 
             // ClientForm
@@ -177,7 +215,7 @@ namespace ClientApp {
             this.AccessibleName = "";
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 361);
+            this.ClientSize = new System.Drawing.Size(1184, 361);
             this.Controls.Add(this.feedbackTextBox);
             this.Controls.Add(this.lNameTextBox);
             this.Controls.Add(this.lNameLabel);
@@ -219,6 +257,11 @@ namespace ClientApp {
         private System.Windows.Forms.Label lNameLabel;
         private System.Windows.Forms.TextBox lNameTextBox;
         private System.Windows.Forms.TextBox feedbackTextBox;
+        private System.Windows.Forms.ColumnHeader dob;
+        private System.Windows.Forms.ColumnHeader firstname;
+        private System.Windows.Forms.ColumnHeader lastname;
+        private System.Windows.Forms.ColumnHeader emailaddr;
+        private System.Windows.Forms.ColumnHeader phonenum;
     }
 }
 

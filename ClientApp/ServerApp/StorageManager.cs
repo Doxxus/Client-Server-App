@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Collections;
 using System.Collections.Specialized;
 using System.IO;
 using Newtonsoft.Json;
@@ -34,7 +35,7 @@ namespace ServerApp
             return true;
         }
 
-        public bool saveToFile(ClientInfo client) {
+        private bool saveToFile(ClientInfo client) {
             try {
                 File.AppendAllText(filePath, JsonConvert.SerializeObject(client));
                 Console.WriteLine("Entry Saved Successfully.");
@@ -45,8 +46,26 @@ namespace ServerApp
             }
         }
 
-        public void saveToDatabase(ClientInfo client) {
+        private void saveToDatabase(ClientInfo client) {
 
+        }
+
+        public List<ClientInfo> collectClients() {
+            List<ClientInfo> ret = new List<ClientInfo>();
+
+            try {
+                using (StreamReader sr = File.OpenText(filePath)) {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null) {
+                        ret.Add(JsonConvert.DeserializeObject<ClientInfo>(line));
+                    }
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e);
+            }
+
+            return ret;
         }
     }
 }

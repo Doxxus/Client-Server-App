@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientApp {
-    class User {
+    public class User {
         public string fname { get; set; }
         public string lname { get; set; }
         public string dateOfBirth { get; set; }
