@@ -2,7 +2,6 @@ F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\bin\Debug\ServerApp.ex
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\bin\Debug\ServerApp.pdb
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\bin\Debug\Newtonsoft.Json.dll
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\bin\Debug\Newtonsoft.Json.xml
-F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.csprojAssemblyReference.cache
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.csproj.CoreCompileInputs.cache
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.csproj.CopyComplete
 F:\Documents\GitHub\Client-Server-App\ClientApp\ServerApp\obj\Debug\ServerApp.exe

@@ -13,7 +13,7 @@ namespace ServerApp {
         IPEndPoint ep;
         TcpListener listener;
         RequestHandler handler;
-        StorageManager storageManager;
+        DataManager storageManager;
 
         byte[] request;
         byte[] response;
@@ -27,7 +27,7 @@ namespace ServerApp {
 
             ep = new IPEndPoint(IPAddress.Loopback, 3000);
             listener = new TcpListener(ep);
-            storageManager = new StorageManager();
+            storageManager = new DataManager();
             handler = new RequestHandler(storageManager);
 
             storageManager.init();

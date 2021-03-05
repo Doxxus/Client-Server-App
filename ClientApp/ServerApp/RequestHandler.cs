@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 
 namespace ServerApp {
     class RequestHandler {
-        StorageManager storageManager;
+        DataManager storageManager;
 
-        public RequestHandler(StorageManager sm) {
+        public RequestHandler(DataManager sm) {
             storageManager = sm;
         }
 
