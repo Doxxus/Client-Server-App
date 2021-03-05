@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ClientApp {
     public partial class ClientForm : Form {
+        //Collects data from the form fields
         private void collectData() {
             fname.data = fNameTextbox.Text;
             lname.data = lNameTextBox.Text;
@@ -18,6 +19,7 @@ namespace ClientApp {
             phone.data = phoneTextbox.Text;
         }
 
+        //Sets up a temp user then hands it off to the client object so it can send the data to the server
         private void submitData() {
             clearInfo();
 

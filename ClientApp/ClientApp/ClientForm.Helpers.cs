@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace ClientApp {
     public partial class ClientForm : Form {
+
+        //Some helper functions to interact with the UI elements
         private void clearInfo() {
             fNameTextbox.Clear();
             lNameTextBox.Clear();
